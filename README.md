@@ -1,8 +1,8 @@
 # Welcome to Client Side Dev Example!
 
-This is a client side development example using TypeScript with Angular 1.5
+## This is a client side development example using TypeScript with Angular 1.5
 
-Required packages include the following ones:
+## Required packages include the following ones:
 
 npm install gulp --save-dev
 
