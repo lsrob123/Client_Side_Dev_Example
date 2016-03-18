@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+    <meta charset="utf-8"/>
+    <script src="scripts/lib.js"></script>
+    <script src="scripts/app.js"></script>
+</head>
+<body ng-app="app">
+<h1>Test Page</h1>
+<div ng-controller="CalculatorController as calculator">
+    <input type="text" ng-model="calculator.numberA"/>
+    <input type="text" ng-model="calculator.numberB"/>
+    <button ng-click="calculator.add()">Add</button>
+    <input type="text" ng-model="calculator.numberC" />
+</div>
+</body>
+</html>
