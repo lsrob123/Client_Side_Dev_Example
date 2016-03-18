@@ -210,3 +210,9 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+# custom
+Ux2.App/typings
+Ux2.App/Dist/
+Ux2.App/Source/App/**/*.js
+Ux2.App/Source/App/**/*.js.map
