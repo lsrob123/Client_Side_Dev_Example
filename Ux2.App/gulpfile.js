@@ -10,6 +10,7 @@ var rename = require("gulp-rename");
 var uglify = require("gulp-uglify");
 var ts = require("gulp-typescript");
 var htmlmin = require('gulp-htmlmin');
+var cssmin = require("gulp-clean-css");
 
 gulp.task("shared:clean", function () {
     return gulp.src(["Dist/_Compiled/*", "Dist/Rel/*", "Dist/Dev/*"], { read: false })
@@ -57,6 +58,17 @@ gulp.task("prod:copy-js", ["dev:copy-js"], function () {
         .pipe(gulp.dest("Dist/Rel/www/scripts"));
 });
 
+gulp.task("shared:copy-css", ["prod:copy-js"], function () {
+    return gulp.src(["Source/Css/**/*.css"])
+        .pipe(gulp.dest("Dist/Dev/www/css"));
+        });
+
+gulp.task("prod:compress-css", ["shared:copy-css"], function () {
+    return gulp.src(["Source/Css/**/*.css"])
+        .pipe(cssmin())
+        .pipe(gulp.dest("Dist/Rel/www/css"));
+        });
+
 gulp.task("default", [
     "shared:clean",
     "dev:copy-html",
@@ -64,7 +76,9 @@ gulp.task("default", [
     "shared:compile",
     "prod:compress-app",
     "dev:copy-js",
-    "prod:copy-js"
+    "prod:copy-js",
+    "shared:copy-css",
+    "prod:compress-css"
 ]);
 
 /// LIB
@@ -76,7 +90,8 @@ gulp.task("shared:clean-lib", function () {
 gulp.task("shared:concat-lib", ["shared:clean-lib"], function () {
     return gulp.src([
             "node_modules/angular/angular.js",
-            "node_modules/angular-ui-router/release/angular-ui-router.js"
+            "node_modules/angular-ui-router/release/angular-ui-router.js",
+            "Source/Lib/ionic.bundle.js"
     ])
         .pipe(concat("lib.js"))
         .pipe(gulp.dest("Dist/_Lib"));

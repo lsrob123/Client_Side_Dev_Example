@@ -24,6 +24,9 @@
   <ItemGroup>
     <Content Include="gulpfile.js" />
     <Content Include="Source\App\Components\Samples\Calculator.html" />
+    <Content Include="Source\Css\ionic.css" />
+    <Content Include="Source\Css\style.css" />
+    <Content Include="Source\Lib\ionic.bundle.js" />
     <Content Include="Source\index.html" />
     <Content Include="web.config" />
   </ItemGroup>
