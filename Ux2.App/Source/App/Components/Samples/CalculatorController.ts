@@ -1,18 +1,24 @@
 ﻿
 module SampleComponents {
     import app = App;
+    import constants = Constants;
     import sampleServices = SampleServices;
 
     export class CalculatorController {
-        static typeName = "CalculatorController";
-
-        static $inject = ["$scope", sampleServices.CalculatorService.typeName];
+        static $inject = ["$scope","$stateParams", constants.Service.CalculatorService];
 
         numberA: number;
         numberB: number;
         numberC: number;
+        textD: string;
 
-        constructor(private $scope: ng.IScope, private calculatorService: sampleServices.CalculatorService) {
+        constructor(private $scope: ng.IScope, private $stateParams: ng.ui.IStateParamsService, private calculatorService: sampleServices.CalculatorService) {
+            this.textD = this.$stateParams[constants.RouteParameter.p1];
+
+            if (!this.textD)
+                this.textD = (new Date()).toDateString();
+
+            let activeComponents = this.$stateParams[constants.RouteParameter.activeComponents];
         }
 
         add(): void {
@@ -20,5 +26,5 @@ module SampleComponents {
         }
     }
 
-    app.app.controller(CalculatorController.typeName, CalculatorController);
+    app.app.controller(constants.Controller.CalculatorController, CalculatorController);
 }

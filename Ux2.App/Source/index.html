@@ -8,11 +8,6 @@
 </head>
 <body ng-app="app">
 <h1>Test Page</h1>
-<div ng-controller="CalculatorController as calculator">
-    <input type="text" ng-model="calculator.numberA"/>
-    <input type="text" ng-model="calculator.numberB"/>
-    <button ng-click="calculator.add()">Add</button>
-    <input type="text" ng-model="calculator.numberC" />
-</div>
+    <div ui-view="view1"></div>
 </body>
 </html>

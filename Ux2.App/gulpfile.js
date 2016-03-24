@@ -17,12 +17,12 @@ gulp.task("shared:clean", function () {
 });
 
 gulp.task("dev:copy-html", ["shared:clean"], function () {
-    return gulp.src("Source/*.html")
+    return gulp.src("Source/**/*.html")
         .pipe(gulp.dest("Dist/Dev/www"));
 });
 
 gulp.task("prod:copy-html", ["shared:clean"], function () {
-    return gulp.src("Source/*.html")
+    return gulp.src("Source/**/*.html")
         .pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(gulp.dest("Dist/Rel/www"));
 });
@@ -30,10 +30,12 @@ gulp.task("prod:copy-html", ["shared:clean"], function () {
 gulp.task("shared:compile", ["shared:clean"], function () {
     return gulp.src([
             "Source/App/app.ts",
+            "Source/App/Constants.ts",
             "Source/App/Config/**/*.ts",
             "Source/App/Services/**/*.ts",
+            "Source/App/Components/**/*.ts",
             "Source/App/**/*.ts"
-        ])
+    ])
         .pipe(ts({ out: "app.js", emitDecoratorMetadata: true, preserveConstEnums: true }))
         .pipe(gulp.dest("Dist/_Compiled"));
 });
@@ -75,7 +77,7 @@ gulp.task("shared:concat-lib", ["shared:clean-lib"], function () {
     return gulp.src([
             "node_modules/angular/angular.js",
             "node_modules/angular-ui-router/release/angular-ui-router.js"
-        ])
+    ])
         .pipe(concat("lib.js"))
         .pipe(gulp.dest("Dist/_Lib"));
 });
